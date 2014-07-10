@@ -29,7 +29,7 @@ gem 'rest-client'
 # Use unicorn as the app server
 gem 'unicorn'
 
-group :test do
+group :development, :test do
   gem 'database_cleaner' 
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
