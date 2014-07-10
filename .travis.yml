@@ -3,3 +3,8 @@ rvm:
   - 2.1.0
 addons:
   postgresql: "9.3"
+
+before_script:
+  - rm -rf config/database.yml
+  - cp config/database.yml.travis config/database.yml
+  - bin/rake db:create db:migrate

@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: TavernKeeperApi_test
+  username: postgres
