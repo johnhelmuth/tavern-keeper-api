@@ -12,4 +12,7 @@ class Api < Grape::API
   get do 
     {version: version}
   end
+  
+  mount CampaignApi => '/campaigns'
+  mount CharacterApi => '/characters'
 end
