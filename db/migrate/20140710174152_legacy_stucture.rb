@@ -4,7 +4,6 @@ class LegacyStucture < ActiveRecord::Migration
     # These are extensions that must be enabled in order to support this database
     enable_extension "plpgsql"
     enable_extension "uuid-ossp"
-    enable_extention "hstore"
 
     create_table "api_keys", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
       t.integer "user_id"
@@ -215,8 +214,8 @@ class LegacyStucture < ActiveRecord::Migration
 
     create_table "invitations", force: true do |t|
       t.string   "email"
-      t.hstore   "groups"
-      t.hstore   "campaigns"
+      t.json   "groups"
+      t.json   "campaigns"
       t.boolean  "approved"
       t.boolean  "complete"
       t.datetime "created_at"
@@ -283,7 +282,7 @@ class LegacyStucture < ActiveRecord::Migration
       t.integer  "user_id"
       t.datetime "created_at"
       t.datetime "updated_at"
-      t.hstore   "admin",      default: {}
+      t.json   "admin",      default: {}
       t.json     "data",       default: {}
       t.boolean  "su",         default: false
     end

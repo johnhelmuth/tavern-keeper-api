@@ -58,7 +58,7 @@ module JsonStore
 	    end
 		end
 
-		def self.srcub_field(key)
+		def self.scrub_field(key)
 			read_field(key)
 
 	    define_method("#{key}=") do |value|
