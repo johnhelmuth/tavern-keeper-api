@@ -1,9 +1,10 @@
 class LegacyStucture < ActiveRecord::Migration
   def change
-    
+
     # These are extensions that must be enabled in order to support this database
     enable_extension "plpgsql"
     enable_extension "uuid-ossp"
+    enable_extention "hstore"
 
     create_table "api_keys", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
       t.integer "user_id"
