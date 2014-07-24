@@ -6,6 +6,7 @@ gem 'rails', '4.1.4'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'grape'
 gem 'grape-entity'
+gem 'will_paginate'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -18,7 +19,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Content Processing 
+# Content Processing
 gem 'loofah'
 
 # API/SDK
@@ -30,7 +31,7 @@ gem 'rest-client'
 gem 'unicorn'
 
 group :development, :test do
-  gem 'database_cleaner' 
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
   gem 'autotest-standalone'

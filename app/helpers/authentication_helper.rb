@@ -1,10 +1,16 @@
 module AuthenticationHelper
   def authenticate!
     _set_api_key
+    _set_user
     error!('Unrecognized Key', 500) if @api_key.nil?
   end
   
+  def current_user!
+    error!('Login Required', 500) if @current_user.nil?
+  end
+  
   def current_user
+    @current_user
   end
   
   def current_api_key
@@ -26,7 +32,7 @@ module AuthenticationHelper
   end
   
   def _set_user
-    
+    @current_user = nil 
   end
   
 end
