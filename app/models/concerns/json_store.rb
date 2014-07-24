@@ -9,9 +9,9 @@ module JsonStore
 			when :string
 				string_field(key)
 			when :hash
-				hash_field(key)
+				scrub_field(key)
 			when :array
-				array_field(key)
+				scrub_field(key)
 			when :integer
 				integer_field(key)
 			when :boolean
@@ -58,16 +58,7 @@ module JsonStore
 	    end
 		end
 
-		def self.hash_field(key)
-			read_field(key)
-
-	    define_method("#{key}=") do |value|
-	    	value = TavernKeeper::Scrub.scrub(value)
-	      self.data= self.data.merge({key.to_s => value})
-	    end
-		end
-
-		def self.array_field(key)
+		def self.srcub_field(key)
 			read_field(key)
 
 	    define_method("#{key}=") do |value|
