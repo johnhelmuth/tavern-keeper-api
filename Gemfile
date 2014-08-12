@@ -19,13 +19,14 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Content Processing
-gem 'loofah'
-
 # API/SDK
 gem 'aws-sdk-core'
 gem 'google-api-client', require: 'google/api_client'
 gem 'rest-client'
+
+# Support Gems
+gem 'tavern-keeper-dice', git: 'git@github.com:TavernKeeper/tavern-keeper-dice.git'
+gem 'tavern-keeper-scrubber', git: 'git@github.com:TavernKeeper/tavern-keeper-scrubber.git'
 
 # Use unicorn as the app server
 gem 'unicorn'
