@@ -1,7 +1,8 @@
 module DataFields
   extend ActiveSupport::Concern
   included do
-    after_initialize :set_data
+    after_initialize :_set_data
+    after_save :_save_data
 
     def self.field(key, type = :string)
       key = key.to_s
@@ -37,12 +38,8 @@ module DataFields
       read_field(key)
 
       define_method("#{key}=") do |value|
-        value = value.to_s
-        value = Loofah.fragment(value).scrub!(:strip).to_s
-        @data[key.to_s] = value
-        json = {value: value }
-        data_stores.where(key: key.to_s).delete_all
-        data_stores.create(key: key.to_s, value: json)
+        @data[key.to_s] = Loofah.fragment(value.to_s).scrub!(:strip).to_s
+        @data_changed << key.to_s
       end
     end
 
@@ -58,9 +55,7 @@ module DataFields
       define_method("#{key}=") do |value|
         value = ::TavernKeeper::Scrubber.scrub(value)
         @data[key.to_s] = value
-        json = {value: value }
-        data_stores.where(key: key.to_s).delete_all
-        data_stores.create(key: key.to_s, value: json)
+        @data_changed << key.to_s
       end
     end
 
@@ -69,9 +64,7 @@ module DataFields
 
       define_method("#{key}=") do |value|
         @data[key.to_s] = value
-        data_stores.where(key: key.to_s).delete_all
-        json = {value: value }
-        data_stores.create(key: key.to_s, value: json)
+        @data_changed << key.to_s
       end
     end
 
@@ -79,10 +72,8 @@ module DataFields
       read_field(key)
 
       define_method("#{key}=") do |value|
-        @data[key.to_s] = value
-        data_stores.where(key: key.to_s).delete_all
-        json = {value: value == true }
-        data_stores.create(key: key.to_s, value: json)
+        @data[key.to_s] = value == true
+        @data_changed << key.to_s
       end
     end
 
@@ -95,7 +86,17 @@ module DataFields
     end
   end
 
-  def set_data
+  private
+  def _set_data
     @data = {}
+    @data_changed = []
+  end
+
+  def _save_data
+    @data_changed.each do |key|
+      json = {value: @data[key] }
+      data_stores.where(key: key.to_s).delete_all
+      data_stores.create!(key: key.to_s, value: json)
+    end
   end
 end

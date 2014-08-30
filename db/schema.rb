@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829204936) do
+ActiveRecord::Schema.define(version: 20140830165453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20140829204936) do
 
   add_index "campaign_books", ["campaign_id"], name: "index_campaign_books_on_campaign_id", using: :btree
   add_index "campaign_books", ["parent_id", "weight"], name: "index_campaign_books_on_parent_id_and_weight", using: :btree
+
+  create_table "campaign_data_stores", id: false, force: true do |t|
+    t.integer "campaign_id"
+    t.string  "key"
+    t.json    "value"
+  end
+
+  add_index "campaign_data_stores", ["campaign_id"], name: "index_campaign_data_stores_on_campaign_id", using: :btree
 
   create_table "campaign_discussion_comments", force: true do |t|
     t.integer  "campaign_discussion_id"
@@ -79,6 +87,22 @@ ActiveRecord::Schema.define(version: 20140829204936) do
 
   add_index "campaign_game_formats", ["campaign_id"], name: "index_campaign_game_formats_on_campaign_id", using: :btree
   add_index "campaign_game_formats", ["game_format_id"], name: "index_campaign_game_formats_on_game_format_id", using: :btree
+
+  create_table "campaign_members", id: false, force: true do |t|
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.boolean  "approved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.json     "permissions"
+    t.json     "wiki_permissions"
+    t.json     "data",             default: {}
+    t.boolean  "pinned",           default: false
+    t.integer  "status",           default: 0
+  end
+
+  add_index "campaign_members", ["campaign_id"], name: "index_campaign_members_on_campaign_id", using: :btree
+  add_index "campaign_members", ["user_id"], name: "index_campaign_members_on_user_id", using: :btree
 
   create_table "campaign_metatags", id: false, force: true do |t|
     t.integer  "campaign_id"
