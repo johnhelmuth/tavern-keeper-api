@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717131507) do
+ActiveRecord::Schema.define(version: 20140829204936) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
@@ -98,16 +97,6 @@ ActiveRecord::Schema.define(version: 20140717131507) do
 
   add_index "campaign_metrics", ["campaign_id"], name: "index_campaign_metrics_on_campaign_id", using: :btree
 
-  create_table "campaign_selected_characters", id: false, force: true do |t|
-    t.integer  "campaign_id"
-    t.integer  "user_id"
-    t.integer  "character_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "campaign_selected_characters", ["campaign_id", "user_id"], name: "index_campaign_selected_characters_on_campaign_id_and_user_id", using: :btree
-
   create_table "campaign_users", id: false, force: true do |t|
     t.integer  "user_id"
     t.integer  "campaign_id"
@@ -151,6 +140,14 @@ ActiveRecord::Schema.define(version: 20140717131507) do
   add_index "campaigns", ["genre_id"], name: "index_campaigns_on_genre_id", using: :btree
   add_index "campaigns", ["looking_for_player"], name: "index_campaigns_on_looking_for_player", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+
+  create_table "character_data_stores", id: false, force: true do |t|
+    t.integer "character_id"
+    t.string  "key"
+    t.json    "value"
+  end
+
+  add_index "character_data_stores", ["character_id"], name: "index_character_data_stores_on_character_id", using: :btree
 
   create_table "character_journals", force: true do |t|
     t.string   "name"
@@ -240,8 +237,8 @@ ActiveRecord::Schema.define(version: 20140717131507) do
 
   create_table "invitations", force: true do |t|
     t.string   "email"
-    t.hstore   "groups"
-    t.hstore   "campaigns"
+    t.json     "groups"
+    t.json     "campaigns"
     t.boolean  "approved"
     t.boolean  "complete"
     t.datetime "created_at"
@@ -307,7 +304,7 @@ ActiveRecord::Schema.define(version: 20140717131507) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.hstore   "admin",      default: {}
+    t.json     "admin",      default: {}
     t.json     "data",       default: {}
     t.boolean  "su",         default: false
   end

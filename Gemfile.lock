@@ -1,3 +1,16 @@
+GIT
+  remote: git@github.com:TavernKeeper/tavern-keeper-dice.git
+  revision: fecb85bead66bcfbc1c066a1d99f8e12a4fb89ad
+  specs:
+    tavern-keeper-dice (0.0.1)
+
+GIT
+  remote: git@github.com:TavernKeeper/tavern-keeper-scrubber.git
+  revision: 30931c7e21bbf592b34fdc035d8ba1dc8c191142
+  specs:
+    tavern-keeper-scrubber (0.0.1)
+      loofah
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -101,7 +114,7 @@ GEM
     kgio (2.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    loofah (2.0.0)
+    loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -113,7 +126,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     netrc (0.7.7)
-    nokogiri (1.6.2.1)
+    nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     pg (0.17.1)
     polyglot (0.3.5)
@@ -233,7 +246,6 @@ DEPENDENCIES
   google-api-client
   grape
   grape-entity
-  loofah
   pg
   rack-cors
   rails (= 4.1.4)
@@ -243,5 +255,7 @@ DEPENDENCIES
   sidetiq
   simplecov
   sinatra (>= 1.3.0)
+  tavern-keeper-dice!
+  tavern-keeper-scrubber!
   unicorn
   will_paginate

@@ -26,7 +26,7 @@ gem 'rest-client'
 
 # Support Gems
 gem 'tavern-keeper-dice', git: 'git@github.com:TavernKeeper/tavern-keeper-dice.git'
-gem 'tavern-keeper-scrubber', git: 'git@github.com:TavernKeeper/tavern-keeper-scrubber.git'
+gem 'tavern-keeper-scrubber', require: 'tavern-keeper/scrubber', git: 'git@github.com:TavernKeeper/tavern-keeper-scrubber.git'
 
 # Use unicorn as the app server
 gem 'unicorn'
