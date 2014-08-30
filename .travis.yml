@@ -8,3 +8,4 @@ before_script:
   - rm -rf config/database.yml
   - cp config/database.yml.travis config/database.yml
   - bin/rake db:create db:migrate
+  - export CODECLIMATE_REPO_TOKEN=01deeac8bfb4f695eba38f08edb1fee2bf8ccd89556c0789cb915ad42f87ca82 

@@ -25,8 +25,11 @@ gem 'google-api-client', require: 'google/api_client'
 gem 'rest-client'
 
 # Support Gems
-gem 'tavern-keeper-dice', git: 'git@github.com:TavernKeeper/tavern-keeper-dice.git'
-gem 'tavern-keeper-scrubber', require: 'tavern-keeper/scrubber', git: 'git@github.com:TavernKeeper/tavern-keeper-scrubber.git'
+# gem 'tavern-keeper-dice', git: 'git@github.com:TavernKeeper/tavern-keeper-dice.git'
+gem 'tavern-keeper-scrubber', '0.0.1', require: 'tavern-keeper/scrubber'
+
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 
 # Use unicorn as the app server
 gem 'unicorn'

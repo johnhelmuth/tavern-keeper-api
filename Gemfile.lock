@@ -1,16 +1,3 @@
-GIT
-  remote: git@github.com:TavernKeeper/tavern-keeper-dice.git
-  revision: fecb85bead66bcfbc1c066a1d99f8e12a4fb89ad
-  specs:
-    tavern-keeper-dice (0.0.1)
-
-GIT
-  remote: git@github.com:TavernKeeper/tavern-keeper-scrubber.git
-  revision: 30931c7e21bbf592b34fdc035d8ba1dc8c191142
-  specs:
-    tavern-keeper-scrubber (0.0.1)
-      loofah
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +47,8 @@ GEM
     builder (3.2.2)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    codeclimate-test-reporter (0.4.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     connection_pool (2.0.0)
@@ -213,6 +202,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    tavern-keeper-scrubber (0.0.1)
+      loofah
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -241,6 +232,7 @@ DEPENDENCIES
   autotest-standalone
   aws-sdk-core
   bcrypt (~> 3.1.7)
+  codeclimate-test-reporter
   database_cleaner
   factory_girl_rails
   google-api-client
@@ -255,7 +247,6 @@ DEPENDENCIES
   sidetiq
   simplecov
   sinatra (>= 1.3.0)
-  tavern-keeper-dice!
-  tavern-keeper-scrubber!
+  tavern-keeper-scrubber (= 0.0.1)
   unicorn
   will_paginate
