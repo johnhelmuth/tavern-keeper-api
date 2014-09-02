@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20140830165453) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
@@ -121,21 +122,15 @@ ActiveRecord::Schema.define(version: 20140830165453) do
 
   add_index "campaign_metrics", ["campaign_id"], name: "index_campaign_metrics_on_campaign_id", using: :btree
 
-  create_table "campaign_users", id: false, force: true do |t|
-    t.integer  "user_id"
+  create_table "campaign_selected_characters", id: false, force: true do |t|
     t.integer  "campaign_id"
-    t.boolean  "approved"
+    t.integer  "user_id"
+    t.integer  "character_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.json     "permissions"
-    t.json     "wiki_permissions"
-    t.json     "data",             default: {}
-    t.boolean  "pinned",           default: false
-    t.integer  "status",           default: 0
   end
 
-  add_index "campaign_users", ["campaign_id"], name: "index_campaign_users_on_campaign_id", using: :btree
-  add_index "campaign_users", ["user_id"], name: "index_campaign_users_on_user_id", using: :btree
+  add_index "campaign_selected_characters", ["campaign_id", "user_id"], name: "index_campaign_selected_characters_on_campaign_id_and_user_id", using: :btree
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -261,8 +256,8 @@ ActiveRecord::Schema.define(version: 20140830165453) do
 
   create_table "invitations", force: true do |t|
     t.string   "email"
-    t.json     "groups"
-    t.json     "campaigns"
+    t.hstore   "groups"
+    t.hstore   "campaigns"
     t.boolean  "approved"
     t.boolean  "complete"
     t.datetime "created_at"
@@ -328,7 +323,7 @@ ActiveRecord::Schema.define(version: 20140830165453) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.json     "admin",      default: {}
+    t.hstore   "admin",      default: {}
     t.json     "data",       default: {}
     t.boolean  "su",         default: false
   end

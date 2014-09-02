@@ -5,15 +5,26 @@ class Api < Grape::API
   helpers AuthenticationHelper
   helpers LoggerHelper
   helpers PaginationHelper
+  helpers PermissionsHelper
+
 
   helpers do
-    def current_resource
-      raise NotImplementedError.new('API Module needs to impliment current resource helper.')
+    def set_model
+
+      raise NotImplementedError.new('API must have set_model helper.')
+    end
+    def set_collection
+      raise NotImplementedError.new('API must have set_collection helper.')
     end
   end
 
   before do
     authenticate!
+    if params[:route_info].route_path != '/(.:format)'
+      set_model
+      set_collection if @model.nil?
+      allow?
+    end
   end
 
   after do

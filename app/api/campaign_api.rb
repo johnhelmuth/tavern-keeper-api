@@ -1,17 +1,22 @@
 class CampaignApi < Grape::API
 
   helpers do
-    def current_resource
-      @model ||= ::Campaign.find(params[:id])
+    def set_model
+      @model ||= params[:id] ? ::Campaign.find(params[:id]) : ::Campaign.new(params[:campaign])
+    end
+
+    def set_collection
+      @collection ||= ::Campaign.all
     end
   end
 
   get do
-    @collection = ::Campaign.all.page(page)
+    set_collection
+    @collection = @collection.page(page)
     present @collection.to_a, with: Campaigns::ListEntity
   end
 
   get ':id' do
-    present current_resource, with: Campaigns::ShowEntity
+    present @model, with: Campaigns::ShowEntity
   end
 end
