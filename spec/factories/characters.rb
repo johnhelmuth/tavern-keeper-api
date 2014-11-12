@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :character do
     sequence(:name) {|n| "character #{n}" }
     concept 'Some Concept'
-    permission_id 1
+    permission :_public
     quote 'Some quote'
     nickname 'Some Nickname'
     user

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830165453) do
+ActiveRecord::Schema.define(version: 20141112172935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20140830165453) do
     t.datetime "updated_at"
     t.integer  "system_id"
     t.boolean  "looking_for_player",   default: true
-    t.integer  "permission_id",        default: 1
+    t.integer  "permission",           default: 1
     t.integer  "image_id",             default: 0
     t.string   "system_name_override"
     t.boolean  "pending_upload",       default: false
@@ -201,7 +201,7 @@ ActiveRecord::Schema.define(version: 20140830165453) do
     t.string   "nickname"
     t.integer  "system_id"
     t.boolean  "npc"
-    t.integer  "permission_id",  default: 1
+    t.integer  "permission",     default: 1
     t.boolean  "pending_upload", default: false
     t.json     "data",           default: {}
     t.integer  "status"

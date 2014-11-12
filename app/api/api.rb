@@ -10,7 +10,6 @@ class Api < Grape::API
 
   helpers do
     def set_model
-
       raise NotImplementedError.new('API must have set_model helper.')
     end
     def set_collection
@@ -36,5 +35,6 @@ class Api < Grape::API
   end
 
   mount CampaignApi => '/campaigns'
+  mount Campaigns::CharacterApi => '/campaigns/:campaign_id/characters'
   mount CharacterApi => '/characters'
 end

@@ -2,8 +2,8 @@ class CampaignPermission < Permission
 
   private
   def _setup
-    # allow :index
+    allow :index
     allow :get
-    allow :post if @user.present?
+    allow :post if user.present?
   end
 end

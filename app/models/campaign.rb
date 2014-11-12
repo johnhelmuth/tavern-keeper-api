@@ -18,4 +18,6 @@ class Campaign < ActiveRecord::Base
   field :hangout_ping, :date
   field :genre_text, :string
   field :tabs, :hash
+
+  enum permission: [:_public, :_private]
 end

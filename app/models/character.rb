@@ -5,4 +5,7 @@ class Character < ActiveRecord::Base
 
   has_many :data_stores, class: Character::DataStore
   has_many :journals, class: Character::Journal
+
+  enum permissions: [:_public, :_private]
+
 end
