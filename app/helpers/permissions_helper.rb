@@ -1,7 +1,7 @@
 module PermissionsHelper
   def allow?
     m = params['route_info'].route_method.downcase.to_sym
-    m = :index if m == :get && params[:id].nil?
+    m = :index if m == :get && @model.nil?
 
     error!('Unauthorized', 401) unless current_permission.allow?(m)
   end

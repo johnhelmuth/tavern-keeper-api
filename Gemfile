@@ -28,6 +28,8 @@ gem 'rest-client'
 # gem 'tavern-keeper-dice', git: 'git@github.com:TavernKeeper/tavern-keeper-dice.git'
 gem 'tavern-keeper-scrubber', '0.0.1', require: 'tavern-keeper/scrubber'
 
+gem 'nokogiri', '1.6.1'
+
 gem "codeclimate-test-reporter", group: :test, require: nil
 
 

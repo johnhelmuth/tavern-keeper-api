@@ -15,14 +15,21 @@ class Permission
     @allow.include?(method.to_sym)
   end
 
+  def user
+    @user
+  end
+
+  def model
+    @model
+  end
+
   private
   def _setup
       raise NotImplementedError.new("#{self.class.name} must impliment _setup")
   end
 
   def allow(method)
-    method = method.to_sym
-    @allow << method unless allow?(method)
+    @allow << method.to_sym
   end
 
 
