@@ -2,6 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/TavernKeeper/tavern-keeper-api.png)](https://codeclimate.com/github/TavernKeeper/tavern-keeper-api)
 [![Travis CI](https://travis-ci.org/TavernKeeper/tavern-keeper-api.svg)](https://travis-ci.org/TavernKeeper/tavern-keeper-api)
+[![Test Coverage](https://codeclimate.com/github/TavernKeeper/tavern-keeper-api/badges/coverage.svg)](https://codeclimate.com/github/TavernKeeper/tavern-keeper-api)
 
 ### Huh? Rails ... for an API ?
 
